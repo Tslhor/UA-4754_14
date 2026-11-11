@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<ProductsWithRouting.Models.Product>
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Products";
 }
 
-<h1>View</h1>
+<h1>Products</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form method="get" asp-action="Index" class="form-inline mb-3">
+    <label for="filterId" class="mr-2">Id</label>
+    <input id="filterId" name="filterId" type="number" class="form-control mr-2" />
+    <label for="filtername" class="mr-2">Name</label>
+    <input id="filtername" name="filtername" type="text" class="form-control mr-2" />
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -37,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", , )*@ Edit |
-                @*@Html.ActionLink("Details", , )*@ View |
-                @*@Html.ActionLink("Delete", , )*@ Delete
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="View" asp-route-id="@item.Id">View</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

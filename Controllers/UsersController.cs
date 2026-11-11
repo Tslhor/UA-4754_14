@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ProductsWithRouting.Models;
-using System.Diagnostics;
 using ProductsWithRouting.Services;
 
 namespace ProductsWithRouting.Controllers
@@ -19,14 +14,16 @@ namespace ProductsWithRouting.Controllers
             myUsers = data.Users;
         }
 
-        public IActionResult Index(string id)
+        [HttpGet("users/index")]
+        public IActionResult Index()
         {
-            return View(myUsers);
+            return Unauthorized();
         }
 
-        public IActionResult Error()
+        [HttpPost("users/index")]
+        public IActionResult Index([FromForm] string id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return id == "df2323eo" ? View(myUsers) : Unauthorized();
         }
 
     }

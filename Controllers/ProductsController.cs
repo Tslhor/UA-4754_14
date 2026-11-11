@@ -51,7 +51,7 @@ namespace ProductsWithRouting.Controllers
             return product == null ? ProductNotFound() : View(product);
         }
 
-        [HttpPost("products/edit")]
+        [HttpPost("products/edit/{id:int?}")]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Product product)
         {
